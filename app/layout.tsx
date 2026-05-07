@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   title: "Thommy Games — Închirieri jocuri pentru evenimente",
   description:
     "Transformă-ți evenimentul într-o experiență memorabilă. Închiriem jocuri mari, din lemn și materiale premium, pentru nunți, petreceri private și evenimente corporate.",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
