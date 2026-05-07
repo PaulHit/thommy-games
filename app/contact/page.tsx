@@ -1,0 +1,164 @@
+"use client";
+
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { useState } from "react";
+import Input from "@/components/ui/Input";
+import Textarea from "@/components/ui/Textarea";
+
+const contactSchema = z.object({
+  name: z.string().min(1, "Numele este obligatoriu"),
+  email: z.string().email("Adresă de email invalidă"),
+  phone: z.string().optional(),
+  message: z.string().min(1, "Mesajul este obligatoriu"),
+});
+
+type ContactFormData = z.infer<typeof contactSchema>;
+
+export default function ContactPage() {
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
+  });
+
+  const onSubmit = async (data: ContactFormData) => {
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error("Failed");
+      setStatus("success");
+      reset();
+    } catch {
+      setStatus("error");
+    }
+  };
+
+  return (
+    <main className="pb-20">
+      <div className="container-custom">
+        <div className="text-center mb-14">
+          <h1 className="font-serif text-4xl md:text-5xl text-gold-dark">
+            Contact
+          </h1>
+          <p className="mt-4 text-brown max-w-xl mx-auto">
+            Ai o întrebare sau vrei să verifici disponibilitatea? Scrie-ne și
+            îți răspundem în maxim 24 de ore.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+          {/* Contact info */}
+          <div className="space-y-8">
+            <div className="bg-cream rounded-2xl p-8 border border-brown/20">
+              <h2 className="font-serif text-xl text-gold-dark mb-4">
+                Informații de contact
+              </h2>
+              <div className="space-y-4 text-text/80">
+                <div>
+                  <p className="text-sm font-medium text-gold-dark">Email</p>
+                  <a
+                    href="mailto:contact@thommygames.ro"
+                    className="hover:text-gold transition-colors"
+                  >
+                    contact@thommygames.ro
+                  </a>
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-gold-dark">Locație</p>
+                  <p>Beclean, Bistrița-Năsăud</p>
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-gold-dark">
+                    Transport gratuit
+                  </p>
+                  <p>În limita a 70 km de Beclean, Bistrița-Năsăud</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-cream rounded-2xl p-8 border border-brown/20">
+              <h2 className="font-serif text-xl text-gold-dark mb-4">
+                Program
+              </h2>
+              <div className="space-y-2 text-sm text-text/80">
+                <p>Luni — Vineri: 09:00 — 18:00</p>
+                <p>Sâmbătă: 10:00 — 16:00</p>
+                <p>Duminică: Închis (evenimente programate)</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Contact form */}
+          <div className="bg-white rounded-2xl border border-brown/20 p-6 md:p-8">
+            {status === "success" ? (
+              <div className="text-center py-8">
+                <p className="text-3xl mb-4">✅</p>
+                <h3 className="font-serif text-xl text-green-800 mb-2">
+                  Mesaj trimis!
+                </h3>
+                <p className="text-green-700 text-sm">
+                  Îți vom răspunde în maxim 24 de ore.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+                <h3 className="font-serif text-xl text-gold-dark mb-2">
+                  Trimite-ne un mesaj
+                </h3>
+
+                <Input
+                  label="Nume *"
+                  {...register("name")}
+                  error={errors.name?.message}
+                />
+                <Input
+                  label="Email *"
+                  type="email"
+                  {...register("email")}
+                  error={errors.email?.message}
+                />
+                <Input
+                  label="Telefon"
+                  type="tel"
+                  {...register("phone")}
+                  error={errors.phone?.message}
+                />
+                <Textarea
+                  label="Mesaj *"
+                  placeholder="Spune-ne despre evenimentul tău..."
+                  {...register("message")}
+                  error={errors.message?.message}
+                />
+
+                {status === "error" && (
+                  <p className="text-red-500 text-sm">
+                    A apărut o eroare. Încearcă din nou.
+                  </p>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={status === "sending"}
+                  className="w-full bg-gold text-white py-3 rounded-full font-medium hover:bg-gold-dark transition-colors disabled:opacity-50"
+                >
+                  {status === "sending" ? "Se trimite..." : "Trimite mesajul"}
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}

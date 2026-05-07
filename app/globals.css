@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #F8F2E4;
+  --color-cream-light: #FDFBF8;
+  --color-gold: #B18558;
+  --color-gold-dark: #966D49;
+  --color-brown: #C3A586;
+  --color-text: #966D49;
+  --color-text-light: #C3A586;
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text);
+}
+
+@utility container-custom {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+
+  @media (min-width: 640px) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
