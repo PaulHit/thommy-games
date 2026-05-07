@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState } from "react";
 
 interface ImageSliderProps {
   images: string[];
@@ -8,69 +8,47 @@ interface ImageSliderProps {
 }
 
 export default function ImageSlider({ images, alt = "" }: ImageSliderProps) {
-  const [permanent, setPermanent] = useState(0);
-  const [hovering, setHovering] = useState(false);
+  const [showSecond, setShowSecond] = useState(false);
 
-  const total = images.length;
-  const displayIndex = hovering ? (permanent + 1) % total : permanent;
+  const photos = images.slice(0, 2);
+  const hasSecond = photos.length > 1;
 
-  const goTo = useCallback(
-    (index: number) => {
-      setPermanent(index);
-    },
-    []
-  );
-
-  const handleClick = useCallback(() => {
-    setPermanent((prev) => (prev + 1) % total);
-  }, [total]);
-
-  if (!images || total === 0) return null;
-
-  if (total === 1) {
-    return (
-      <img
-        src={images[0]}
-        alt={alt}
-        className="w-full h-full object-contain"
-        loading="lazy"
-      />
-    );
-  }
+  if (photos.length === 0) return null;
 
   return (
     <div
-      className="relative w-full h-full cursor-pointer"
-      onMouseEnter={() => setHovering(true)}
-      onMouseLeave={() => setHovering(false)}
-      onClick={handleClick}
+      className="relative w-full h-full"
+      onMouseEnter={() => hasSecond && setShowSecond(true)}
+      onMouseLeave={() => setShowSecond(false)}
     >
-      <img
-        key={displayIndex}
-        src={images[displayIndex]}
-        alt={`${alt} — ${displayIndex + 1}`}
-        className="w-full h-full object-contain animate-fade-in"
-        loading="lazy"
-      />
+      <button
+        onClick={() => hasSecond && setShowSecond((prev) => !prev)}
+        className="w-full h-full cursor-pointer block p-0 border-0 bg-transparent"
+        aria-label="Comută imaginea"
+      >
+        <img
+          key={showSecond ? "2" : "1"}
+          src={showSecond && hasSecond ? photos[1] : photos[0]}
+          alt={alt}
+          className="w-full h-full object-contain animate-fade-in"
+          loading="lazy"
+        />
+      </button>
 
-      {/* Dot indicators */}
-      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
-        {images.map((_, i) => (
-          <button
-            key={i}
-            onClick={(e) => {
-              e.stopPropagation();
-              goTo(i);
-            }}
+      {hasSecond && (
+        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10 pointer-events-none">
+          <div
             className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              i === displayIndex
-                ? "bg-gold scale-110 opacity-100"
-                : "bg-white/40 hover:bg-white/70 opacity-70"
+              !showSecond ? "bg-gold scale-110 opacity-100" : "bg-white/40 opacity-70"
             }`}
-            aria-label={`Imaginea ${i + 1}`}
           />
-        ))}
-      </div>
+          <div
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              showSecond ? "bg-gold scale-110 opacity-100" : "bg-white/40 opacity-70"
+            }`}
+          />
+        </div>
+      )}
     </div>
   );
 }

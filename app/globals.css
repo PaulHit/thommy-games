@@ -10,7 +10,7 @@
   --color-green: #6F7B4F;
   --font-serif: "Playfair Display", serif;
   --font-sans: "Inter", sans-serif;
-  --animate-fade-in: fade-in 0.3s ease-out;
+  --animate-fade-in: fade-in 1s ease;
 }
 
 @keyframes fade-in {
