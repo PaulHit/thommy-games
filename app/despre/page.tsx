@@ -1,6 +1,6 @@
 export default function DesprePage() {
   return (
-    <main className="pb-20">
+    <main className="pt-8 pb-20">
       <div className="container-custom">
         <div className="max-w-3xl mx-auto">
           <h1 className="font-serif text-4xl md:text-5xl text-gold-dark text-center">

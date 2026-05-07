@@ -7,7 +7,7 @@ interface HeroProps {
 export default function Hero({ backgroundImage }: HeroProps) {
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-[80vh] flex items-center justify-center overflow-hidden"
       style={
         backgroundImage
           ? {

@@ -59,9 +59,9 @@ export default async function JocuriPage() {
   const level2 = games.filter((g) => g.level === "2");
 
   return (
-    <main className="pb-20">
+    <main className="pt-8 pb-20">
       <div className="container-custom">
-        <div className="text-center mb-14 pt-8">
+        <div className="text-center mb-14">
           <h1 className="font-serif text-4xl md:text-5xl text-gold-dark">
             Jocurile noastre
           </h1>

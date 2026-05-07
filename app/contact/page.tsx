@@ -45,7 +45,7 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="pb-20">
+    <main className="pt-8 pb-20">
       <div className="container-custom">
         <div className="text-center mb-14">
           <h1 className="font-serif text-4xl md:text-5xl text-gold-dark">

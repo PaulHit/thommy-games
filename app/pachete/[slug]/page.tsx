@@ -70,7 +70,7 @@ export default async function PackagePage({
 
   if (!pkg) {
     return (
-      <main className="pb-20">
+      <main className="pt-8 pb-20">
         <div className="container-custom text-center">
           <h1 className="font-serif text-3xl text-gold-dark">
             Pachetul nu a fost găsit
@@ -87,7 +87,7 @@ export default async function PackagePage({
   const descriptionText = toPlainText(pkg.description);
 
   return (
-    <main className="pb-20">
+    <main className="pt-8 pb-20">
       <div className="container-custom">
         <Link
           href="/pachete"

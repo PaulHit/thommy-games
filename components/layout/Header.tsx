@@ -22,9 +22,9 @@ export default function Header() {
           <Image
             src="/logo.png"
             alt="Thommy Games"
-            width={80}
-            height={80}
-            className="h-16 w-auto"
+            width={96}
+            height={96}
+            className="h-20 w-auto"
             priority
           />
         </Link>
