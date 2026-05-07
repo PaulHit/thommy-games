@@ -36,12 +36,12 @@ export default async function PachetePage() {
             }) => (
               <div
                 key={pkg._id}
-                className="relative bg-cream rounded-2xl p-8 border border-text-light/20 flex flex-col overflow-hidden"
+                className="relative bg-cream rounded-2xl p-8 border border-text-light/20 flex flex-col"
               >
-                {/* Recomandat badge - top */}
+                {/* Recomandat badge - top center */}
                 {pkg.slug.current === "classic" && (
-                  <div className="absolute top-0 right-6">
-                    <span className="inline-block bg-green text-white text-[10px] px-3 py-1 rounded-b-md font-sans font-semibold tracking-wide uppercase shadow-sm">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                    <span className="inline-block bg-green text-white text-xs px-5 py-2 rounded-full font-sans font-semibold tracking-wide uppercase shadow-md">
                       Recomandat
                     </span>
                   </div>

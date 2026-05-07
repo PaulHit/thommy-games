@@ -36,12 +36,12 @@ export default function FeaturedPackages({ packages }: FeaturedPackagesProps) {
           {packages.map((pkg) => (
             <div
               key={pkg._id}
-              className="relative bg-cream rounded-2xl p-6 flex flex-col items-center text-center border border-text-light/20 hover:border-gold/50 transition-colors overflow-hidden"
+              className="relative bg-cream rounded-2xl p-6 flex flex-col items-center text-center border border-text-light/20 hover:border-gold/50 transition-colors"
             >
-              {/* Recomandat badge - top right */}
+              {/* Recomandat badge - top center */}
               {pkg.slug.current === "classic" && (
-                <div className="absolute -top-0.5 right-4">
-                  <span className="inline-block bg-green text-white text-[10px] px-3 py-1 rounded-b-md font-sans font-semibold tracking-wide uppercase shadow-sm">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                  <span className="inline-block bg-green text-white text-xs px-5 py-2 rounded-full font-sans font-semibold tracking-wide uppercase shadow-md">
                     Recomandat
                   </span>
                 </div>
