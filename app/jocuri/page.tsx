@@ -15,14 +15,14 @@ interface Game {
 
 function GameCard({ game }: { game: Game }) {
   const imageUrls =
-    game.photos?.map((p) => urlFor(p).width(600).height(450).url()) || [];
+    game.photos?.map((p) => urlFor(p).width(600).height(800).fit("crop").crop("focalpoint").url()) || [];
   const hasPhotos = imageUrls.length > 0;
 
   return (
     <div className="bg-cream rounded-xl overflow-hidden border border-text-light/10 flex flex-col">
-      <div className="aspect-[4/3] bg-text-light/10">
+      <div className="aspect-[3/4] bg-text-light/10">
         {hasPhotos ? (
-          <ImageSlider images={imageUrls} alt={game.name} />
+          <ImageSlider images={imageUrls} alt={game.name} interactive={false} />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-text/20">
             <svg
