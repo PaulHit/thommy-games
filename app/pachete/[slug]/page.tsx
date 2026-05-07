@@ -91,7 +91,7 @@ export default async function PackagePage({
       <div className="container-custom">
         <Link
           href="/pachete"
-          className="text-sm text-brown hover:text-gold transition-colors mb-8 inline-block"
+          className="text-sm text-text-light hover:text-gold transition-colors mb-8 inline-block"
         >
           ← Înapoi la pachete
         </Link>
@@ -100,6 +100,11 @@ export default async function PackagePage({
           <div>
             <h1 className="font-serif text-4xl md:text-5xl text-gold-dark">
               Pachetul {pkg.name}
+              {pkg.slug.current === "classic" && (
+                <span className="inline-block bg-green text-white text-xs px-3 py-1 rounded-md font-sans font-semibold tracking-wide uppercase ml-3 align-middle">
+                  Recomandat
+                </span>
+              )}
             </h1>
             <p className="text-4xl font-bold text-gold mt-6">€{pkg.price}</p>
 
@@ -116,7 +121,7 @@ export default async function PackagePage({
             </div>
 
             {pkg.includesAssistant && (
-              <p className="mt-4 bg-gold/10 text-gold-dark inline-block px-4 py-2 rounded-full text-sm font-medium">
+              <p className="mt-4 bg-green/10 text-green inline-block px-4 py-2 rounded-full text-sm font-medium">
                 ✓ Asistent dedicat inclus
               </p>
             )}

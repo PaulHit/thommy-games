@@ -26,7 +26,7 @@ export default function FeaturedPackages({ packages }: FeaturedPackagesProps) {
           <h2 className="font-serif text-3xl md:text-4xl text-gold-dark">
             Pachetele noastre
           </h2>
-          <p className="mt-4 text-brown max-w-lg mx-auto">
+          <p className="mt-4 text-text-light max-w-lg mx-auto">
             Alege pachetul potrivit pentru evenimentul tău. Toate includ
             transport, montaj, instrucțiuni și 5 ore de joc.
           </p>
@@ -36,8 +36,17 @@ export default function FeaturedPackages({ packages }: FeaturedPackagesProps) {
           {packages.map((pkg) => (
             <div
               key={pkg._id}
-              className="bg-cream rounded-2xl p-6 flex flex-col items-center text-center border border-brown/20 hover:border-gold/50 transition-colors"
+              className="relative bg-cream rounded-2xl p-6 flex flex-col items-center text-center border border-text-light/20 hover:border-gold/50 transition-colors overflow-hidden"
             >
+              {/* Recomandat badge - top right */}
+              {pkg.slug.current === "classic" && (
+                <div className="absolute -top-0.5 right-4">
+                  <span className="inline-block bg-green text-white text-[10px] px-3 py-1 rounded-b-md font-sans font-semibold tracking-wide uppercase shadow-sm">
+                    Recomandat
+                  </span>
+                </div>
+              )}
+
               <div className="flex-1 flex flex-col items-center w-full">
                 <h3 className="font-serif text-2xl font-bold text-gold-dark">
                   {pkg.name}
@@ -45,7 +54,7 @@ export default function FeaturedPackages({ packages }: FeaturedPackagesProps) {
                 <p className="mt-3 text-3xl font-bold text-gold">
                   €{pkg.price}
                 </p>
-                <p className="mt-2 text-sm text-brown">
+                <p className="mt-2 text-sm text-text-light">
                   {pkg.totalGames} jocuri
                 </p>
                 <p className="text-xs text-text/60">
@@ -53,7 +62,7 @@ export default function FeaturedPackages({ packages }: FeaturedPackagesProps) {
                 </p>
                 <div className="mt-3 h-7">
                   {pkg.includesAssistant && (
-                    <span className="text-xs bg-gold/10 text-gold-dark px-3 py-1 rounded-full font-medium">
+                    <span className="text-xs bg-green/10 text-green px-3 py-1 rounded-full font-medium">
                       + Asistent dedicat
                     </span>
                   )}

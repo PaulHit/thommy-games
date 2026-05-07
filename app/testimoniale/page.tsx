@@ -6,7 +6,7 @@ export default function TestimonialePage() {
           <h1 className="font-serif text-4xl md:text-5xl text-gold-dark">
             Testimoniale
           </h1>
-          <p className="mt-4 text-brown max-w-xl mx-auto">
+          <p className="mt-4 text-text-light max-w-xl mx-auto">
             Ce spun clienții noștri despre experiența Thommy Games.
           </p>
         </div>
@@ -52,16 +52,16 @@ export default function TestimonialePage() {
           ].map((t) => (
             <div
               key={t.name}
-              className="bg-cream rounded-2xl p-8 border border-brown/20"
+              className="bg-cream rounded-2xl p-8 border border-text-light/20"
             >
               <p className="text-text/80 italic leading-relaxed">
                 &ldquo;{t.quote}&rdquo;
               </p>
-              <div className="mt-6 border-t border-brown/20 pt-4">
+              <div className="mt-6 border-t border-text-light/20 pt-4">
                 <p className="font-serif font-semibold text-gold-dark">
                   {t.name}
                 </p>
-                <p className="text-sm text-brown">{t.role}</p>
+                <p className="text-sm text-text-light">{t.role}</p>
               </div>
             </div>
           ))}

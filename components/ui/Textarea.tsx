@@ -10,7 +10,7 @@ export default function Textarea({ label, error, ...props }: TextareaProps) {
     <div className="flex flex-col gap-1.5">
       <label className="text-sm font-medium text-gold-dark">{label}</label>
       <textarea
-        className="border border-brown/40 rounded-lg px-4 py-2.5 text-text bg-white focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold transition-all resize-none"
+        className="border border-text-light/40 rounded-lg px-4 py-2.5 text-text bg-white focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold transition-all resize-none"
         rows={4}
         {...props}
       />

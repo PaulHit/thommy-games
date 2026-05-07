@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Resend } from "resend";
 
 export async function POST(req: NextRequest) {
   try {
@@ -19,8 +20,8 @@ export async function POST(req: NextRequest) {
     } = body;
 
     const isBooking = !!packageName;
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const recipient = process.env.CONTACT_EMAIL || "contact@thommygames.ro";
-    const senderEmail = process.env.BREVO_SENDER_EMAIL || recipient;
 
     const subject = isBooking
       ? `Rezervare nouă: ${packageName} — ${contactName || name}`
@@ -28,11 +29,11 @@ export async function POST(req: NextRequest) {
 
     const htmlContent = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-        <h1 style="color: #966D49; font-family: Georgia, serif;">
+        <h1 style="color: #8A6238; font-family: Georgia, serif;">
           ${isBooking ? "Rezervare nouă" : "Mesaj nou de pe site"}
         </h1>
 
-        <div style="background: #F8F2E4; padding: 20px; border-radius: 12px; margin: 20px 0;">
+        <div style="background: #F6F0DF; padding: 20px; border-radius: 12px; margin: 20px 0;">
           ${
             isBooking
               ? `
@@ -66,29 +67,12 @@ export async function POST(req: NextRequest) {
       </div>
     `;
 
-    const response = await fetch("https://api.brevo.com/v3/smtp/email", {
-      method: "POST",
-      headers: {
-        "api-key": process.env.BREVO_API_KEY!,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        sender: {
-          name: "Thommy Games",
-          email: senderEmail,
-        },
-        to: [{ email: recipient }],
-        replyTo: { email },
-        subject,
-        htmlContent,
-      }),
+    await resend.emails.send({
+      from: "Thommy Games <onboarding@resend.dev>",
+      to: [recipient],
+      subject,
+      html: htmlContent,
     });
-
-    if (!response.ok) {
-      const errorBody = await response.text();
-      console.error("Brevo API error:", response.status, errorBody);
-      throw new Error(`Brevo API error: ${response.status}`);
-    }
 
     return NextResponse.json({ success: true });
   } catch (error) {

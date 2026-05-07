@@ -6,7 +6,7 @@
 |---|---|
 | Frontend | Next.js 14+ (App Router, TypeScript, Tailwind CSS) |
 | CMS | Sanity.io (embedded Studio at `/studio`) |
-| Email | Brevo (300 emails/day free) |
+| Email | Resend (100 emails/day free) |
 | Hosting | Vercel |
 | Domain | Hostico |
 
@@ -211,7 +211,7 @@ Fields:
 ### Flow
 1. User browses packages → clicks one → reads details → clicks "Rezervă acest pachet"
 2. Form appears inline (scrolls to form section or expands)
-3. On submit → `POST /api/contact` → Brevo API → email to company with all fields + package name
+3. On submit → `POST /api/contact` → Resend → email to company with all fields + package name
 4. User sees success confirmation (toast)
 
 ---
@@ -248,7 +248,7 @@ thommy-games/
 │   ├── testimoniale/page.tsx             # Testimonials
 │   ├── studio/[[...index]]/page.tsx      # Embedded Sanity Studio
 │   └── api/
-│       └── contact/route.ts              # Brevo email handler
+│       └── contact/route.ts              # Resend email handler
 ├── components/
 │   ├── layout/
 │   │   ├── Header.tsx                    # Sticky nav, mobile hamburger menu
@@ -274,7 +274,7 @@ thommy-games/
 ├── lib/
 │   ├── sanity.ts                         # Sanity client config
 │   ├── queries.ts                        # GROQ queries
-│   └── brevo.ts                         # Brevo client config
+│   └── resend.ts                         # Resend client config
 ├── schemas/                              # Sanity schema definitions
 │   ├── index.ts                          # Exports all schemas
 │   ├── game.ts
@@ -323,7 +323,7 @@ thommy-games/
 19. **Testimoniale** — Grid/masonry from Sanity
 
 ### Phase 5 — Email Integration
-20. Build `POST /api/contact` route with Brevo API
+20. Build `POST /api/contact` route with Resend
 21. Form validation with Zod (client + server)
 22. Email template with all booking details
 
@@ -333,7 +333,7 @@ thommy-games/
 25. Performance (Next.js Image, lazy loading, SSG where possible)
 26. Push to GitHub → connect to Vercel → deploy
 27. Configure custom domain via Hostico DNS (CNAME to Vercel)
-28. Set Vercel env vars: `SANITY_PROJECT_ID`, `SANITY_DATASET`, `BREVO_API_KEY`, `BREVO_SENDER_EMAIL`, `CONTACT_EMAIL`
+28. Set Vercel env vars: `SANITY_PROJECT_ID`, `SANITY_DATASET`, `RESEND_API_KEY`, `CONTACT_EMAIL`
 
 ---
 

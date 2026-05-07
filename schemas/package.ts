@@ -68,6 +68,11 @@ export default defineType({
       type: "boolean",
     }),
     defineField({
+      name: "recommended",
+      title: "Recomandat",
+      type: "boolean",
+    }),
+    defineField({
       name: "order",
       title: "Ordine afișare",
       type: "number",

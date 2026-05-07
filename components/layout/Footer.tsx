@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="bg-cream border-t border-brown/20 pt-16 pb-8">
+    <footer className="bg-cream border-t border-text-light/20 pt-16 pb-8">
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           <div>
@@ -57,7 +57,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-brown/20 mt-10 pt-6 text-center text-xs text-text/60">
+        <div className="border-t border-text-light/20 mt-10 pt-6 text-center text-xs text-text/60">
           © {new Date().getFullYear()} Thommy Games. Toate drepturile
           rezervate.
         </div>

@@ -14,7 +14,7 @@ export default async function PachetePage() {
           <h1 className="font-serif text-4xl md:text-5xl text-gold-dark">
             Pachete de jocuri
           </h1>
-          <p className="mt-4 text-brown max-w-xl mx-auto">
+          <p className="mt-4 text-text-light max-w-xl mx-auto">
             Toate pachetele includ transport gratuit (70 km de Beclean, Bistrița-Năsăud), montaj,
             demontaj, instrucțiuni și 5 ore de joc. Pentru pachetele Pro și Epic
             oferim și asistent dedicat.
@@ -36,18 +36,26 @@ export default async function PachetePage() {
             }) => (
               <div
                 key={pkg._id}
-                className="bg-cream rounded-2xl p-8 border border-brown/20 flex flex-col"
+                className="relative bg-cream rounded-2xl p-8 border border-text-light/20 flex flex-col overflow-hidden"
               >
+                {/* Recomandat badge - top */}
+                {pkg.slug.current === "classic" && (
+                  <div className="absolute top-0 right-6">
+                    <span className="inline-block bg-green text-white text-[10px] px-3 py-1 rounded-b-md font-sans font-semibold tracking-wide uppercase shadow-sm">
+                      Recomandat
+                    </span>
+                  </div>
+                )}
                 <h2 className="font-serif text-2xl font-bold text-gold-dark">
                   {pkg.name}
                 </h2>
                 <p className="text-4xl font-bold text-gold mt-4">€{pkg.price}</p>
-                <p className="text-brown mt-2">{pkg.totalGames} jocuri</p>
+                <p className="text-text-light mt-2">{pkg.totalGames} jocuri</p>
                 <p className="text-sm text-text/60 mt-1">
                   {pkg.level1Count} jocuri Nivel 1 + {pkg.level2Count} jocuri Nivel 2
                 </p>
                 {pkg.includesAssistant && (
-                  <p className="mt-4 inline-block bg-gold/10 text-gold-dark px-3 py-1 rounded-full text-sm font-medium w-fit">
+                  <p className="mt-4 inline-block bg-green/10 text-green px-3 py-1 rounded-full text-sm font-medium w-fit">
                     Asistent dedicat inclus
                   </p>
                 )}
@@ -71,7 +79,7 @@ export default async function PachetePage() {
           </div>
         )}
 
-        <div className="mt-20 bg-white rounded-2xl border border-brown/20 p-8 md:p-12">
+        <div className="mt-20 bg-white rounded-2xl border border-text-light/20 p-8 md:p-12">
           <h2 className="font-serif text-2xl text-gold-dark text-center mb-8">
             Ce include orice pachet
           </h2>

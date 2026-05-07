@@ -1,14 +1,9 @@
-export const fonts = {
-  sans: ["Inter", "sans-serif"],
-  serif: ["Playfair Display", "serif"],
-};
-
 export const colors = {
-  cream: "#F8F2E4",
-  creamLight: "#FDFBF8",
-  gold: "#B18558",
-  goldDark: "#966D49",
-  brown: "#C3A586",
-  text: "#966D49",
-  textLight: "#C3A586",
+  cream: "#F6F0DF",
+  creamLight: "#FFFDF7",
+  gold: "#B8894E",
+  goldDark: "#8A6238",
+  text: "#2B2118",
+  textLight: "#7A6A58",
+  green: "#6F7B4F",
 };

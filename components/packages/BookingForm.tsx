@@ -128,12 +128,12 @@ export default function BookingForm({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-white rounded-2xl border border-brown/20 p-6 md:p-8 space-y-5"
+      className="bg-white rounded-2xl border border-text-light/20 p-6 md:p-8 space-y-5"
     >
       <h3 className="font-serif text-xl text-gold-dark mb-2">
         Rezervă {packageName}
       </h3>
-      <p className="text-sm text-brown -mt-3 mb-4">
+      <p className="text-sm text-text-light -mt-3 mb-4">
         Completează formularul și îți trimitem oferta personalizată.
       </p>
 
@@ -185,11 +185,11 @@ export default function BookingForm({
 
       {/* Game selection */}
       {level1Games.length > 0 && (
-        <div className="border border-brown/20 rounded-xl p-4">
+        <div className="border border-text-light/20 rounded-xl p-4">
           <h4 className="font-medium text-gold-dark text-sm mb-1">
             Jocuri Nivel 1
           </h4>
-          <p className="text-xs text-brown mb-3">
+          <p className="text-xs text-text-light mb-3">
             Selectează {level1Count} {level1Count === 1 ? "joc" : "jocuri"} ({selectedLevel1.length}/{level1Count})
           </p>
           <div className="space-y-1.5 max-h-52 overflow-y-auto">
@@ -212,7 +212,7 @@ export default function BookingForm({
                     checked={isChecked}
                     disabled={isDisabled}
                     onChange={() => toggleGame(game._id, "1")}
-                    className="rounded border-brown/40 accent-gold"
+                    className="rounded border-text-light/40 accent-gold"
                   />
                   {game.name}
                 </label>
@@ -223,11 +223,11 @@ export default function BookingForm({
       )}
 
       {level2Games.length > 0 && (
-        <div className="border border-brown/20 rounded-xl p-4">
+        <div className="border border-text-light/20 rounded-xl p-4">
           <h4 className="font-medium text-gold-dark text-sm mb-1">
             Jocuri Nivel 2
           </h4>
-          <p className="text-xs text-brown mb-3">
+          <p className="text-xs text-text-light mb-3">
             Selectează {level2Count} {level2Count === 1 ? "joc" : "jocuri"} ({selectedLevel2.length}/{level2Count})
           </p>
           <div className="space-y-1.5 max-h-52 overflow-y-auto">
@@ -250,7 +250,7 @@ export default function BookingForm({
                     checked={isChecked}
                     disabled={isDisabled}
                     onChange={() => toggleGame(game._id, "2")}
-                    className="rounded border-brown/40 accent-gold"
+                    className="rounded border-text-light/40 accent-gold"
                   />
                   {game.name}
                 </label>

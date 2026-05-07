@@ -1,5 +1,6 @@
 import { getAllGames } from "@/lib/queries";
 import { toPlainText, urlFor } from "@/lib/sanity";
+import ImageSlider from "@/components/ui/ImageSlider";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 export const revalidate = 3600;
@@ -12,6 +13,46 @@ interface Game {
   photos: SanityImageSource[];
 }
 
+function GameCard({ game }: { game: Game }) {
+  const imageUrls =
+    game.photos?.map((p) => urlFor(p).width(600).height(450).url()) || [];
+  const hasPhotos = imageUrls.length > 0;
+
+  return (
+    <div className="bg-cream rounded-xl overflow-hidden border border-text-light/10 flex flex-col">
+      <div className="aspect-[4/3] bg-text-light/10">
+        {hasPhotos ? (
+          <ImageSlider images={imageUrls} alt={game.name} />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-text/20">
+            <svg
+              className="w-12 h-12"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1}
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+              />
+            </svg>
+          </div>
+        )}
+      </div>
+      <div className="p-5 flex-1">
+        <h3 className="font-serif text-lg font-semibold text-gold-dark">
+          {game.name}
+        </h3>
+        <p className="mt-2 text-sm text-text-light/80 leading-relaxed">
+          {toPlainText(game.description)}
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export default async function JocuriPage() {
   const games = (await getAllGames()) as Game[];
   const level1 = games.filter((g) => g.level === "1");
@@ -20,11 +61,11 @@ export default async function JocuriPage() {
   return (
     <main className="pb-20">
       <div className="container-custom">
-        <div className="text-center mb-14">
+        <div className="text-center mb-14 pt-8">
           <h1 className="font-serif text-4xl md:text-5xl text-gold-dark">
             Jocurile noastre
           </h1>
-          <p className="mt-4 text-brown max-w-xl mx-auto">
+          <p className="mt-4 text-text-light max-w-xl mx-auto">
             Toate jocurile sunt realizate din lemn și materiale premium,
             gândite să arate impecabil și să reziste.
           </p>
@@ -36,54 +77,9 @@ export default async function JocuriPage() {
               Jocuri Nivel 1
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {level1.map((game) => {
-                const photo = game.photos?.[0];
-                const imageUrl = photo
-                  ? urlFor(photo).width(600).height(450).url()
-                  : null;
-
-                return (
-                  <div
-                    key={game._id}
-                    className="bg-cream rounded-xl overflow-hidden border border-brown/10 flex flex-col"
-                  >
-                    <div className="aspect-[4/3] bg-brown/10 relative">
-                      {imageUrl ? (
-                        <img
-                          src={imageUrl}
-                          alt={game.name}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-text/20">
-                          <svg
-                            className="w-12 h-12"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={1}
-                              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                            />
-                          </svg>
-                        </div>
-                      )}
-                    </div>
-                    <div className="p-5 flex-1">
-                      <h3 className="font-serif text-lg font-semibold text-gold-dark">
-                        {game.name}
-                      </h3>
-                      <p className="mt-2 text-sm text-text/70 leading-relaxed">
-                        {toPlainText(game.description)}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
+              {level1.map((game) => (
+                <GameCard key={game._id} game={game} />
+              ))}
             </div>
           </section>
         )}
@@ -93,58 +89,13 @@ export default async function JocuriPage() {
             <h2 className="font-serif text-2xl text-gold-dark mb-8">
               Jocuri Nivel 2
             </h2>
-            <p className="text-sm text-brown mb-6 -mt-4">
+            <p className="text-sm text-text-light mb-6 -mt-4">
               Jocuri mai mari, de tip masă — Fussball, Air-Hockey, Ping-Pong.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {level2.map((game) => {
-                const photo = game.photos?.[0];
-                const imageUrl = photo
-                  ? urlFor(photo).width(600).height(450).url()
-                  : null;
-
-                return (
-                  <div
-                    key={game._id}
-                    className="bg-cream rounded-xl overflow-hidden border border-brown/10 flex flex-col"
-                  >
-                    <div className="aspect-[4/3] bg-brown/10 relative">
-                      {imageUrl ? (
-                        <img
-                          src={imageUrl}
-                          alt={game.name}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-text/20">
-                          <svg
-                            className="w-12 h-12"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={1}
-                              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                            />
-                          </svg>
-                        </div>
-                      )}
-                    </div>
-                    <div className="p-5 flex-1">
-                      <h3 className="font-serif text-lg font-semibold text-gold-dark">
-                        {game.name}
-                      </h3>
-                      <p className="mt-2 text-sm text-text/70 leading-relaxed">
-                        {toPlainText(game.description)}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
+              {level2.map((game) => (
+                <GameCard key={game._id} game={game} />
+              ))}
             </div>
           </section>
         )}

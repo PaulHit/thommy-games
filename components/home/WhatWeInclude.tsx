@@ -33,24 +33,39 @@ const benefits = [
 
 export default function WhatWeInclude() {
   return (
-    <section className="py-20 bg-cream">
-      <div className="container-custom">
+    <section className="py-20 bg-cream relative overflow-hidden">
+      {/* Decorative green shapes */}
+      <div className="absolute top-10 left-10 w-24 h-24 rounded-full bg-green/5 pointer-events-none" />
+      <div className="absolute bottom-16 right-8 w-16 h-16 rounded-full bg-green/5 pointer-events-none" />
+      <div className="absolute top-1/3 right-1/4 w-32 h-32 rounded-full bg-green/[0.03] pointer-events-none" />
+
+      <div className="container-custom relative z-10">
         <div className="text-center mb-14">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="w-2 h-2 rounded-full bg-green" />
+            <div className="w-2 h-2 rounded-full bg-gold" />
+            <div className="w-2 h-2 rounded-full bg-green" />
+          </div>
           <h2 className="font-serif text-3xl md:text-4xl text-gold-dark">
             De ce Thommy Games
           </h2>
-          <p className="mt-4 text-brown max-w-lg mx-auto">
+          <p className="mt-4 text-text-light max-w-lg mx-auto">
             Aducem mai mult decât jocuri — aducem atmosferă, interacțiune și
             amintiri.
           </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {benefits.map((b) => (
+          {benefits.map((b, i) => (
             <div
               key={b.title}
-              className="bg-white rounded-xl p-6 border border-brown/10"
+              className="relative bg-white rounded-xl p-6 border-t-2 border-green/30 hover:border-green/60 transition-colors shadow-sm"
             >
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-2 h-2 rounded-full bg-green/60 flex-shrink-0" />
+                <div className="w-2 h-2 rounded-full bg-gold/50 flex-shrink-0" />
+                <div className="w-2 h-2 rounded-full bg-green/30 flex-shrink-0" />
+              </div>
               <h3 className="font-serif text-xl font-semibold text-gold-dark mb-2">
                 {b.title}
               </h3>

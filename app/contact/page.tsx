@@ -51,7 +51,7 @@ export default function ContactPage() {
           <h1 className="font-serif text-4xl md:text-5xl text-gold-dark">
             Contact
           </h1>
-          <p className="mt-4 text-brown max-w-xl mx-auto">
+          <p className="mt-4 text-text-light max-w-xl mx-auto">
             Ai o întrebare sau vrei să verifici disponibilitatea? Scrie-ne și
             îți răspundem în maxim 24 de ore.
           </p>
@@ -60,7 +60,7 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
           {/* Contact info */}
           <div className="space-y-8">
-            <div className="bg-cream rounded-2xl p-8 border border-brown/20">
+            <div className="bg-cream rounded-2xl p-8 border border-text-light/20">
               <h2 className="font-serif text-xl text-gold-dark mb-4">
                 Informații de contact
               </h2>
@@ -87,7 +87,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="bg-cream rounded-2xl p-8 border border-brown/20">
+            <div className="bg-cream rounded-2xl p-8 border border-text-light/20">
               <h2 className="font-serif text-xl text-gold-dark mb-4">
                 Program
               </h2>
@@ -100,7 +100,7 @@ export default function ContactPage() {
           </div>
 
           {/* Contact form */}
-          <div className="bg-white rounded-2xl border border-brown/20 p-6 md:p-8">
+          <div className="bg-white rounded-2xl border border-text-light/20 p-6 md:p-8">
             {status === "success" ? (
               <div className="text-center py-8">
                 <p className="text-3xl mb-4">✅</p>

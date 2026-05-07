@@ -16,7 +16,7 @@ export default function Select({
     <div className="flex flex-col gap-1.5">
       <label className="text-sm font-medium text-gold-dark">{label}</label>
       <select
-        className="border border-brown/40 rounded-lg px-4 py-2.5 text-text bg-white focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold transition-all"
+        className="border border-text-light/40 rounded-lg px-4 py-2.5 text-text bg-white focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold transition-all"
         {...props}
       >
         <option value="">Selectează...</option>

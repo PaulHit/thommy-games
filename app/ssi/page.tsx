@@ -41,7 +41,7 @@ export default function SSIPage() {
           <h1 className="font-serif text-4xl md:text-5xl text-gold-dark">
             Întrebări frecvente
           </h1>
-          <p className="mt-4 text-brown max-w-xl mx-auto">
+          <p className="mt-4 text-text-light max-w-xl mx-auto">
             Răspunsuri la cele mai comune întrebări despre serviciile noastre.
           </p>
         </div>
@@ -50,7 +50,7 @@ export default function SSIPage() {
           {faqs.map((faq) => (
             <details
               key={faq.question}
-              className="group bg-cream rounded-2xl border border-brown/20 overflow-hidden"
+              className="group bg-cream rounded-2xl border border-text-light/20 overflow-hidden"
             >
               <summary className="cursor-pointer px-6 py-4 font-serif text-gold-dark font-semibold marker:text-gold hover:text-gold transition-colors">
                 {faq.question}
