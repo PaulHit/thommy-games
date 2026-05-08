@@ -64,5 +64,42 @@ export default defineType({
         { name: "ogImage", title: "Imagine OG", type: "image" },
       ],
     }),
+    defineField({
+      name: "emailTemplate",
+      title: "Template email confirmare",
+      type: "object",
+      options: { collapsible: true, collapsed: true },
+      fields: [
+        {
+          name: "subject",
+          title: "Subiect email (booking)",
+          type: "string",
+          description: 'Placeholder-uri: {{packageName}}',
+        },
+        {
+          name: "subjectContact",
+          title: "Subiect email (contact simplu)",
+          type: "string",
+        },
+        {
+          name: "heading",
+          title: "Titlu email (booking)",
+          type: "string",
+          description: 'Ex: "Ți-am primit rezervarea!"',
+        },
+        {
+          name: "headingContact",
+          title: "Titlu email (contact)",
+          type: "string",
+          description: 'Ex: "Ți-am primit mesajul!"',
+        },
+        {
+          name: "message",
+          title: "Mesaj principal",
+          type: "text",
+          description: 'Scrie textul de confirmare pe care-l primește clientul. Placeholder-uri: {{packageName}}, {{eventDate}}, {{location}}.',
+        },
+      ],
+    }),
   ],
 });
