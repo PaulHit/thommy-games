@@ -4,27 +4,21 @@ import { visionTool } from "@sanity/vision";
 import schemas from "./schemas";
 import { presentationTool } from "sanity/presentation";
 
-// Determine the base path based on the environment
-const isVercel = process.env.VERCEL === "1";
-const basePath = isVercel ? "/studio" : "/";
-
 export default defineConfig({
   name: "thommy-games",
   title: "Thommy Games",
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "bp2qwftt",
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
-  basePath: basePath,
+  basePath: "/studio",
   plugins: [
     structureTool(),
     visionTool(),
     presentationTool({
       previewUrl: {
-        origin: "http://localhost:3000",
-        preview: (document) => {
-          if (document.slug?.current) {
-            return `/${document.slug.current}`;
-          }
-          return "/";
+        origin: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+        previewMode: {
+          enable: "/api/draft",
+          disable: "/api/disable-draft",
         },
       },
     }),
