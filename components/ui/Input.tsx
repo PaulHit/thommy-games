@@ -11,6 +11,8 @@ export default function Input({ label, error, ...props }: InputProps) {
       <label className="text-sm font-medium text-gold-dark">{label}</label>
       <input
         className="border border-text-light/40 rounded-lg px-4 py-2.5 text-text bg-white focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold transition-all"
+        inputMode={props.type === "tel" ? "tel" : undefined}
+        pattern={props.type === "tel" ? "[+0-9 ]*" : undefined}
         {...props}
       />
       {error && <p className="text-red-500 text-xs">{error}</p>}

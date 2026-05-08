@@ -10,7 +10,13 @@ import Textarea from "@/components/ui/Textarea";
 const contactSchema = z.object({
   name: z.string().min(1, "Numele este obligatoriu"),
   email: z.string().email("Adresă de email invalidă"),
-  phone: z.string().optional(),
+  phone: z
+    .string()
+    .optional()
+    .refine(
+      (val) => !val || /^[+\d\s]+$/.test(val),
+      "Număr de telefon invalid"
+    ),
   message: z.string().min(1, "Mesajul este obligatoriu"),
 });
 

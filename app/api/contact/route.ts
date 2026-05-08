@@ -131,7 +131,7 @@ export async function POST(req: NextRequest) {
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 560px; margin: 0 auto; padding: 24px;">
             <div style="text-align: center; margin-bottom: 24px;">
-              <img src="https://thommygames.ro/logo.png" alt="Thommy Games" style="width: 80px; height: auto;" />
+              <img src="https://thommygames.ro/round_logo.png" alt="Thommy Games" style="width: 80px; height: auto;" />
             </div>
             <div style="background: #F6F0DF; padding: 28px; border-radius: 12px; text-align: center;">
               <p style="font-size: 18px; color: #2B2118; margin: 0 0 12px;">

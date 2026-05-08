@@ -11,9 +11,21 @@ import Textarea from "@/components/ui/Textarea";
 const bookingSchema = z.object({
   contactName: z.string().min(1, "Numele este obligatoriu"),
   email: z.string().email("Adresă de email invalidă"),
-  phone: z.string().optional(),
+  phone: z
+    .string()
+    .optional()
+    .refine(
+      (val) => !val || /^[+\d\s]+$/.test(val),
+      "Număr de telefon invalid — folosește doar cifre, spații și +"
+    ),
   eventType: z.string().min(1, "Selectează tipul evenimentului"),
-  eventDate: z.string().min(1, "Data este obligatorie"),
+  eventDate: z
+    .string()
+    .min(1, "Data este obligatorie")
+    .refine(
+      (val) => new Date(val) >= new Date(new Date().setHours(0, 0, 0, 0)),
+      "Data nu poate fi în trecut"
+    ),
   location: z.string().min(1, "Locația este obligatorie"),
   guestCount: z.string().optional(),
   message: z.string().optional(),
@@ -163,6 +175,7 @@ export default function BookingForm({
       <Input
         label="Data evenimentului *"
         type="date"
+        min={new Date().toISOString().split("T")[0]}
         {...register("eventDate")}
         error={errors.eventDate?.message}
       />
