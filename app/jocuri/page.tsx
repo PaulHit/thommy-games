@@ -3,7 +3,7 @@ import { toPlainText, urlFor } from "@/lib/sanity";
 import ImageSlider from "@/components/ui/ImageSlider";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 interface Game {
   _id: string;

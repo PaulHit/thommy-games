@@ -14,13 +14,13 @@ export default function CTA() {
         <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href="/pachete"
-            className="inline-block bg-white text-gold-dark px-8 py-3.5 rounded-full font-medium hover:bg-cream transition-colors"
+            className="inline-block bg-white text-gold-dark px-8 py-3.5 rounded-full font-medium hover:bg-cream hover:scale-105 transition-all"
           >
             Vezi pachetele
           </Link>
           <Link
             href="/contact"
-            className="inline-block border-2 border-white text-white px-8 py-3.5 rounded-full font-medium hover:bg-white hover:text-gold-dark transition-colors"
+            className="inline-block border-2 border-white text-white px-8 py-3.5 rounded-full font-medium hover:bg-white hover:text-gold-dark hover:scale-105 transition-all"
           >
             Solicită ofertă
           </Link>

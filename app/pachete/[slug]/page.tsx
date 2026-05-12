@@ -5,7 +5,7 @@ import { sanityClient } from "@/lib/sanity";
 import { getPackageBySlug, getAllGames } from "@/lib/queries";
 import { toPlainText } from "@/lib/sanity";
 
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 interface PackageData {
   _id: string;
@@ -75,7 +75,7 @@ export default async function PackagePage({
           <h1 className="font-serif text-3xl text-gold-dark">
             Pachetul nu a fost găsit
           </h1>
-          <Link href="/pachete" className="text-gold hover:underline mt-4 inline-block">
+          <Link href="/pachete" className="text-gold hover:text-gold-dark hover:scale-110 transition-all mt-4 inline-block">
             Înapoi la pachete
           </Link>
         </div>
@@ -91,7 +91,7 @@ export default async function PackagePage({
       <div className="container-custom">
         <Link
           href="/pachete"
-          className="text-sm text-text-light hover:text-gold transition-colors mb-8 inline-block"
+          className="text-sm text-text-light hover:text-gold-dark hover:scale-110 transition-all mb-8 inline-block"
         >
           ← Înapoi la pachete
         </Link>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import SocialLinks from "@/components/ui/SocialLinks";
 
 export default function Footer() {
   return (
@@ -26,12 +27,11 @@ export default function Footer() {
               Linkuri rapide
             </h4>
             <div className="flex flex-col gap-2 text-sm">
-              <Link href="/pachete" className="text-text hover:text-gold transition-colors">Pachete</Link>
-              <Link href="/jocuri" className="text-text hover:text-gold transition-colors">Jocuri</Link>
-              <Link href="/despre" className="text-text hover:text-gold transition-colors">Despre noi</Link>
-              <Link href="/galerie" className="text-text hover:text-gold transition-colors">Galerie</Link>
-              <Link href="/ssi" className="text-text hover:text-gold transition-colors">Întrebări frecvente</Link>
-              <Link href="/contact" className="text-text hover:text-gold transition-colors">Contact</Link>
+              <Link href="/pachete" className="text-text hover:text-gold hover:scale-110 transition-all inline-block">Pachete</Link>
+              <Link href="/jocuri" className="text-text hover:text-gold hover:scale-110 transition-all inline-block">Jocuri</Link>
+              <Link href="/despre" className="text-text hover:text-gold hover:scale-110 transition-all inline-block">Despre noi</Link>
+              <Link href="/ssi" className="text-text hover:text-gold hover:scale-110 transition-all inline-block">Întrebări frecvente</Link>
+              <Link href="/contact" className="text-text hover:text-gold hover:scale-110 transition-all inline-block">Contact</Link>
             </div>
           </div>
 
@@ -60,6 +60,10 @@ export default function Footer() {
         <div className="border-t border-text-light/20 mt-10 pt-6 text-center text-xs text-text/60">
           © {new Date().getFullYear()} Thommy Games. Toate drepturile
           rezervate.
+        </div>
+
+        <div className="mt-6 flex justify-center">
+          <SocialLinks />
         </div>
       </div>
     </footer>

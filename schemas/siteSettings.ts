@@ -97,7 +97,8 @@ export default defineType({
           name: "message",
           title: "Mesaj principal",
           type: "text",
-          description: 'Scrie textul de confirmare pe care-l primește clientul. Placeholder-uri: {{packageName}}, {{eventDate}}, {{location}}.',
+          description:
+            "Scrie textul de confirmare pe care-l primește clientul. Placeholder-uri: {{packageName}}, {{eventDate}}, {{location}}.",
         },
       ],
     }),

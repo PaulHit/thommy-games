@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 interface ImageSliderProps {
   images: string[];
@@ -32,10 +33,12 @@ export default function ImageSlider({ images, alt = "", interactive = true }: Im
       aria-label={hasSecond ? "Comută imaginea" : undefined}
     >
       {/* Photo 1 — always visible, fades out on hover (desktop) or click (mobile) */}
-      <img
+      <Image
         src={photos[0]}
         alt={alt}
-        className={`w-full h-full object-contain absolute inset-0 transition-opacity duration-1000 ease ${
+        fill
+        sizes="(max-width: 768px) 100vw, 33vw"
+        className={`object-contain transition-opacity duration-1000 ease ${
           hasSecond && clicked ? "opacity-0" : "opacity-100 pointer-events-none"
         } ${hasSecond ? "group-hover:opacity-0" : ""}`}
         loading="lazy"
@@ -43,10 +46,12 @@ export default function ImageSlider({ images, alt = "", interactive = true }: Im
 
       {/* Photo 2 — fades in on hover (desktop) or click (mobile) */}
       {hasSecond && (
-        <img
+        <Image
           src={photos[1]}
           alt={alt}
-          className={`w-full h-full object-contain absolute inset-0 transition-opacity duration-1000 ease pointer-events-none ${
+          fill
+          sizes="(max-width: 768px) 100vw, 33vw"
+          className={`object-contain transition-opacity duration-1000 ease pointer-events-none ${
             clicked ? "opacity-100" : "opacity-0"
           } group-hover:opacity-100`}
           loading="lazy"

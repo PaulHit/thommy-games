@@ -95,8 +95,6 @@ export default function BookingForm({
     });
   };
 
-  const full = selectedLevel1.length === level1Count && selectedLevel2.length === level2Count;
-
   const onSubmit = async (data: BookingFormData) => {
     setStatus("sending");
     try {
@@ -274,9 +272,9 @@ export default function BookingForm({
       )}
 
       <p className="text-xs text-text/40 text-center">
-        {full
-          ? "✓ Ai selectat toate jocurile. Poți trimite cererea."
-          : "Selectează toate jocurile înainte de a trimite cererea."}
+        {selectedGames.length > 0
+          ? `Ai selectat ${selectedGames.length} joc${selectedGames.length === 1 ? "" : "uri"}. Poți trimite cererea.`
+          : "Selectează jocurile dorite mai jos."}
       </p>
 
       {status === "error" && (
@@ -287,8 +285,8 @@ export default function BookingForm({
 
       <button
         type="submit"
-        disabled={status === "sending" || !full}
-        className="w-full bg-gold text-white py-3 rounded-full font-medium hover:bg-gold-dark transition-colors disabled:opacity-50"
+        disabled={status === "sending"}
+        className="w-full bg-gold text-white py-3 rounded-full font-medium hover:bg-gold-dark hover:scale-105 transition-all disabled:opacity-50 cursor-pointer"
       >
         {status === "sending" ? "Se trimite..." : "Trimite cererea"}
       </button>

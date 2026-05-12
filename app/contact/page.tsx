@@ -6,6 +6,7 @@ import { z } from "zod";
 import { useState } from "react";
 import Input from "@/components/ui/Input";
 import Textarea from "@/components/ui/Textarea";
+import SocialLinks from "@/components/ui/SocialLinks";
 
 const contactSchema = z.object({
   name: z.string().min(1, "Numele este obligatoriu"),
@@ -103,6 +104,13 @@ export default function ContactPage() {
                 <p>Duminică: Închis (evenimente programate)</p>
               </div>
             </div>
+
+            <div className="bg-cream rounded-2xl p-8 border border-text-light/20">
+              <h2 className="font-serif text-xl text-gold-dark mb-4">
+                Social media
+              </h2>
+              <SocialLinks />
+            </div>
           </div>
 
           {/* Contact form */}
@@ -153,11 +161,11 @@ export default function ContactPage() {
                   </p>
                 )}
 
-                <button
-                  type="submit"
-                  disabled={status === "sending"}
-                  className="w-full bg-gold text-white py-3 rounded-full font-medium hover:bg-gold-dark transition-colors disabled:opacity-50"
-                >
+<button
+            type="submit"
+            disabled={status === "sending"}
+            className="w-full bg-gold text-white py-3 rounded-full font-medium hover:bg-gold-dark hover:scale-105 transition-all disabled:opacity-50 cursor-pointer"
+          >
                   {status === "sending" ? "Se trimite..." : "Trimite mesajul"}
                 </button>
               </form>

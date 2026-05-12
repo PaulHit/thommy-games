@@ -10,6 +10,7 @@ interface PackageProps {
   level2Count: number;
   includesAssistant: boolean;
   featured?: boolean;
+  recommended?: boolean;
 }
 
 interface FeaturedPackagesProps {
@@ -39,7 +40,7 @@ export default function FeaturedPackages({ packages }: FeaturedPackagesProps) {
               className="relative bg-cream rounded-2xl p-6 flex flex-col items-center text-center border border-text-light/20 hover:border-gold/50 transition-colors"
             >
               {/* Recomandat badge - top center */}
-              {pkg.slug.current === "classic" && (
+              {pkg.recommended && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                   <span className="inline-block bg-green text-white text-xs px-5 py-2 rounded-full font-sans font-semibold tracking-wide uppercase shadow-md">
                     Recomandat
@@ -70,7 +71,7 @@ export default function FeaturedPackages({ packages }: FeaturedPackagesProps) {
               </div>
               <Link
                 href={`/pachete/${pkg.slug.current}`}
-                className="mt-4 w-full bg-gold text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-gold-dark transition-colors"
+                className="mt-4 w-full bg-gold text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-gold-dark hover:scale-105 transition-all"
               >
                 Vezi detalii
               </Link>

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getAllPackages } from "@/lib/queries";
 import { toPlainText } from "@/lib/sanity";
 
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 export default async function PachetePage() {
   const packages = await getAllPackages();
@@ -32,6 +32,7 @@ export default async function PachetePage() {
               level1Count: number;
               level2Count: number;
               includesAssistant: boolean;
+              recommended?: boolean;
               description: unknown[];
             }) => (
               <div
@@ -39,7 +40,7 @@ export default async function PachetePage() {
                 className="relative bg-cream rounded-2xl p-8 border border-text-light/20 flex flex-col"
               >
                 {/* Recomandat badge - top center */}
-                {pkg.slug.current === "classic" && (
+                {pkg.recommended && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                     <span className="inline-block bg-green text-white text-xs px-5 py-2 rounded-full font-sans font-semibold tracking-wide uppercase shadow-md">
                       Recomandat
@@ -65,7 +66,7 @@ export default async function PachetePage() {
                 <div className="mt-auto pt-6">
                   <Link
                     href={`/pachete/${pkg.slug.current}`}
-                    className="block text-center bg-gold text-white px-6 py-3 rounded-full font-medium hover:bg-gold-dark transition-colors"
+                    className="block text-center bg-gold text-white px-6 py-3 rounded-full font-medium hover:bg-gold-dark hover:scale-105 transition-all"
                   >
                     Vezi detalii și rezervă
                   </Link>

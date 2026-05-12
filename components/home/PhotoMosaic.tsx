@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import Image from "next/image";
 import { urlFor } from "@/lib/sanity";
 
 interface PhotoMosaicProps {
@@ -34,19 +35,20 @@ export default function PhotoMosaic({ photos }: PhotoMosaicProps) {
           style={{ columnCount: columns, columnGap: "0.75rem" }}
         >
           {photos.map((photo, i) => {
-            // Some photos span differently for organic feel
             const heightClass = i % 5 === 0 ? "h-80" : i % 3 === 0 ? "h-64" : "h-48";
-            const url = urlFor(photo).width(800).quality(85).url();
+            const src = urlFor(photo).width(800).quality(85).url();
             return (
               <div
                 key={i}
-                className="break-inside-avoid overflow-hidden rounded-xl mb-3"
+                className={`break-inside-avoid relative ${heightClass} overflow-hidden rounded-xl mb-3`}
               >
-                <img
-                  src={url}
+                <Image
+                  src={src}
                   alt=""
-                  className={`w-full ${heightClass} object-cover hover:scale-105 transition-transform duration-500`}
+                  fill
+                  className="object-cover hover:scale-105 transition-transform duration-500"
                   loading="lazy"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
               </div>
             );

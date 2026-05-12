@@ -2,8 +2,9 @@ import game from "./game";
 import packageSchema from "./package";
 import page from "./page";
 import testimonial from "./testimonial";
-import galleryEntry from "./galleryEntry";
 import faq from "./faq";
+import homeBenefit from "./homeBenefit";
+import homeVideo from "./homeVideo";
 import siteSettings from "./siteSettings";
 
 const schemas = [
@@ -11,8 +12,9 @@ const schemas = [
   packageSchema,
   page,
   testimonial,
-  galleryEntry,
   faq,
+  homeBenefit,
+  homeVideo,
   siteSettings,
 ];
 

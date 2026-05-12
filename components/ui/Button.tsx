@@ -21,7 +21,7 @@ export default function Button({
 }: ButtonProps) {
   return (
     <button
-      className={`inline-block px-8 py-3 rounded-full font-medium transition-colors ${variants[variant]} ${className}`}
+      className={`inline-block px-8 py-3 rounded-full font-medium hover:scale-105 transition-all ${variants[variant]} ${className}`}
       {...props}
     />
   );
