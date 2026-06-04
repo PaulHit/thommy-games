@@ -28,7 +28,7 @@ export default function PhotoMosaic({ photos }: PhotoMosaicProps) {
   if (!photos || photos.length === 0) return null;
 
   return (
-    <section className="py-16 bg-cream-light">
+    <section className="py-16 bg-white">
       <div className="px-2 sm:px-4" ref={containerRef}>
         <div
           className="columns-1 sm:columns-2 lg:columns-3 gap-3 space-y-3"

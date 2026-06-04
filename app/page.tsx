@@ -1,6 +1,5 @@
 import { sanityClient } from "@/lib/sanity";
 import Hero from "@/components/home/Hero";
-import GameCollectionPreview from "@/components/home/GameCollectionPreview";
 import PhotoMosaic from "@/components/home/PhotoMosaic";
 import FeaturedPackages from "@/components/home/FeaturedPackages";
 import WhatWeInclude from "@/components/home/WhatWeInclude";
@@ -71,7 +70,13 @@ export default async function Home() {
   return (
     <main>
       <Hero />
-      <GameCollectionPreview />
+      {(data.instagramPosts && data.instagramPosts.length > 0) && (
+        <InstagramFeed
+          username={data.instagramUsername ?? undefined}
+          profileUrl={data.instagramUrl ?? undefined}
+          posts={data.instagramPosts}
+        />
+      )}
       {(data.videos[0] || data.videos[1]) && (
         <VideoShowcase videos={data.videos.slice(0, 2)} />
       )}
@@ -81,13 +86,6 @@ export default async function Home() {
         <VideoShowcase videos={data.videos.slice(2, 4)} />
       )}
       <Testimonials />
-      {(data.instagramPosts && data.instagramPosts.length > 0) && (
-        <InstagramFeed
-          username={data.instagramUsername ?? undefined}
-          profileUrl={data.instagramUrl ?? undefined}
-          posts={data.instagramPosts}
-        />
-      )}
       <FeaturedPackages packages={data.packages} />
       <CTA />
     </main>

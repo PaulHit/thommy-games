@@ -21,7 +21,7 @@ export default function FeaturedPackages({ packages }: FeaturedPackagesProps) {
   if (packages.length === 0) return null;
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-cream">
       <div className="container-custom">
         <div className="text-center mb-14">
           <h2 className="font-serif text-3xl md:text-4xl text-gold-dark">
