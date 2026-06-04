@@ -1,23 +1,11 @@
-import Image from "next/image";
-import Link from "next/link";
-import { urlFor } from "@/lib/sanity";
-import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
-
-interface InstagramPost {
-  _key: string;
-  image: SanityImageSource;
-  url?: string;
-  caption?: string;
-}
-
 interface InstagramFeedProps {
   username?: string;
   profileUrl?: string;
-  posts: InstagramPost[];
+  embedUrl?: string;
 }
 
-export default function InstagramFeed({ username, profileUrl, posts }: InstagramFeedProps) {
-  if (posts.length === 0) return null;
+export default function InstagramFeed({ username, profileUrl, embedUrl }: InstagramFeedProps) {
+  if (!embedUrl) return null;
 
   return (
     <section className="py-20 bg-cream">
@@ -41,28 +29,14 @@ export default function InstagramFeed({ username, profileUrl, posts }: Instagram
           )}
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto">
-          {posts.slice(0, 4).map((post) => {
-            const src = urlFor(post.image).width(400).height(400).fit("crop").url();
-
-            return (
-              <Link
-                key={post._key}
-                href={post.url || profileUrl || "#"}
-                target={post.url ? "_blank" : undefined}
-                rel={post.url ? "noopener noreferrer" : undefined}
-                className="relative aspect-square rounded-xl overflow-hidden group cursor-pointer"
-              >
-                <Image
-                  src={src}
-                  alt={post.caption || "Postare Instagram"}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  sizes="(max-width: 768px) 50vw, 25vw"
-                />
-              </Link>
-            );
-          })}
+        <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg">
+          <iframe
+            src={embedUrl}
+            title="Instagram feed"
+            className="w-full border-0"
+            style={{ minHeight: "400px" }}
+            loading="lazy"
+          />
         </div>
       </div>
     </section>
