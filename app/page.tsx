@@ -35,6 +35,12 @@ interface HomeVideo {
   videoUrl?: string;
 }
 
+interface InstagramPost {
+  _key: string;
+  images: SanityImageSource[];
+  url?: string;
+}
+
 interface HomePageData {
   packages: PackageData[];
   gamesWithPhotos: { photos: SanityImageSource[] }[];
@@ -42,7 +48,7 @@ interface HomePageData {
   videos: HomeVideo[];
   instagramUsername: string | null;
   instagramUrl: string | null;
-  instagramEmbedUrl: string | null;
+  instagramPosts: InstagramPost[] | null;
 }
 
 export default async function Home() {
@@ -54,7 +60,7 @@ export default async function Home() {
       "videos": *[_type == "homeVideo"] | order(order asc) { label, "videoUrl": videoFile.asset->url },
       "instagramUsername": *[_type == "siteSettings"][0].instagramUsername,
       "instagramUrl": *[_type == "siteSettings"][0].instagramUrl,
-      "instagramEmbedUrl": *[_type == "siteSettings"][0].instagramEmbedUrl
+      "instagramPosts": *[_type == "siteSettings"][0].instagramPosts[] { _key, images, url }
     }`
   );
 
@@ -75,11 +81,11 @@ export default async function Home() {
         <VideoShowcase videos={data.videos.slice(2, 4)} />
       )}
       <Testimonials />
-      {(data.instagramEmbedUrl) && (
+      {(data.instagramPosts && data.instagramPosts.length > 0) && (
         <InstagramFeed
           username={data.instagramUsername ?? undefined}
           profileUrl={data.instagramUrl ?? undefined}
-          embedUrl={data.instagramEmbedUrl}
+          posts={data.instagramPosts}
         />
       )}
       <FeaturedPackages packages={data.packages} />

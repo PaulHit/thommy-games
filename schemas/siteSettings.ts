@@ -115,11 +115,34 @@ export default defineType({
       description: "Link complet către profilul de Instagram",
     }),
     defineField({
-      name: "instagramEmbedUrl",
-      title: "Instagram — widget embed URL",
-      type: "url",
-      description:
-        "URL-ul de embed generat de SnapWidget (snapwidget.com) sau alt serviciu similar. Se actualizează automat cu ultimele postări.",
+      name: "instagramPosts",
+      title: "Instagram — postări afișate",
+      type: "array",
+      description: "Postările de pe Instagram care apar pe site. Pentru carusel, adaugă mai multe imagini.",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "images",
+              title: "Imagini",
+              type: "array",
+              of: [{ type: "image" }],
+              validation: (rule) => rule.required().min(1),
+              description: "Prima imagine e coperta. Adaugă mai multe pentru carusel.",
+            },
+            {
+              name: "url",
+              title: "Link postare",
+              type: "url",
+              description: "Linkul către postarea de pe Instagram",
+            },
+          ],
+          preview: {
+            select: { media: "images.0" },
+          },
+        },
+      ],
     }),
   ],
 });
