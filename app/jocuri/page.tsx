@@ -1,3 +1,4 @@
+import { sanityClient } from "@/lib/sanity";
 import { getAllGames } from "@/lib/queries";
 import { toPlainText, urlFor } from "@/lib/sanity";
 import ImageSlider from "@/components/ui/ImageSlider";
@@ -53,8 +54,26 @@ function GameCard({ game }: { game: Game }) {
   );
 }
 
+interface PageData {
+  title?: string;
+  subtitle?: string;
+}
+
 export default async function JocuriPage() {
-  const games = (await getAllGames()) as Game[];
+  const data = await sanityClient.fetch<{
+    games: Game[];
+    page: PageData | null;
+  }>(
+    `{
+      "games": *[_type == "game"] | order(name asc),
+      "page": *[_type == "page" && slug.current == "jocuri"][0]{ title, subtitle }
+    }`
+  );
+
+  const games = data.games;
+  const pageTitle = data.page?.title || "Jocurile noastre";
+  const pageSubtitle = data.page?.subtitle || "Toate jocurile sunt realizate din lemn și materiale premium, gândite să arate impecabil și să reziste.";
+
   const level1 = games.filter((g) => g.level === "1");
   const level2 = games.filter((g) => g.level === "2");
 
@@ -63,12 +82,13 @@ export default async function JocuriPage() {
       <div className="container-custom">
         <div className="text-center mb-14">
           <h1 className="font-serif text-4xl md:text-5xl text-gold-dark">
-            Jocurile noastre
+            {pageTitle}
           </h1>
-          <p className="mt-4 text-text-light max-w-xl mx-auto">
-            Toate jocurile sunt realizate din lemn și materiale premium,
-            gândite să arate impecabil și să reziste.
-          </p>
+          {pageSubtitle && (
+            <p className="mt-4 text-text-light max-w-xl mx-auto">
+              {pageSubtitle}
+            </p>
+          )}
         </div>
 
         {level1.length > 0 && (

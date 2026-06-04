@@ -102,5 +102,50 @@ export default defineType({
         },
       ],
     }),
+    defineField({
+      name: "instagramUsername",
+      title: "Instagram — username",
+      type: "string",
+      description: "Doar numele contului, fără @ (ex: thommygames)",
+    }),
+    defineField({
+      name: "instagramUrl",
+      title: "Instagram — link profil",
+      type: "url",
+      description: "Link complet către profilul de Instagram",
+    }),
+    defineField({
+      name: "instagramPosts",
+      title: "Instagram — postări afișate",
+      type: "array",
+      description: "Postările de pe Instagram care vor apărea pe site",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "image",
+              title: "Imagine",
+              type: "image",
+              validation: (rule) => rule.required(),
+            },
+            {
+              name: "url",
+              title: "Link postare",
+              type: "url",
+              description: "Linkul către postarea de pe Instagram",
+            },
+            {
+              name: "caption",
+              title: "Descriere",
+              type: "text",
+            },
+          ],
+          preview: {
+            select: { title: "caption", media: "image" },
+          },
+        },
+      ],
+    }),
   ],
 });

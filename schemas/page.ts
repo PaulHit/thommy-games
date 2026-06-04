@@ -7,9 +7,15 @@ export default defineType({
   fields: [
     defineField({
       name: "title",
-      title: "Titlu",
+      title: "Titlu pagină",
       type: "string",
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "subtitle",
+      title: "Subtitlu / descriere",
+      type: "text",
+      description: "Textul de sub titlul paginii",
     }),
     defineField({
       name: "slug",
