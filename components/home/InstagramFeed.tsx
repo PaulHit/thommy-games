@@ -66,34 +66,35 @@ function CarouselPost({ post }: { post: InstagramPost }) {
       </div>
 
       {/* Hover zoom on current image */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="w-full h-full group-hover:scale-105 transition-transform duration-500" />
-      </div>
 
-      {/* Nav arrows */}
+      {/* Large touch targets for mobile carousel */}
       {hasMultiple && (
         <>
           <button
             onClick={prev}
-            className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10 shadow"
+            className="absolute inset-y-0 left-0 w-[20%] z-10 cursor-pointer"
             aria-label="Înapoi"
-          >
+          />
+          <button
+            onClick={next}
+            className="absolute inset-y-0 right-0 w-[20%] z-10 cursor-pointer"
+            aria-label="Înainte"
+          />
+
+          {/* Visible arrow buttons — desktop hover */}
+          <div className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-20 shadow pointer-events-none">
             <svg className="w-4 h-4 text-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
-          </button>
-          <button
-            onClick={next}
-            className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10 shadow"
-            aria-label="Înainte"
-          >
+          </div>
+          <div className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-20 shadow pointer-events-none">
             <svg className="w-4 h-4 text-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>
-          </button>
+          </div>
 
-          {/* Page indicator dots */}
-          <div className="absolute top-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+          {/* Dot indicators */}
+          <div className="absolute top-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20 pointer-events-none">
             {post.images.map((_, i) => (
               <div
                 key={i}
