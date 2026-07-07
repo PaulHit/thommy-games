@@ -5,7 +5,7 @@ export const revalidate = 86400;
 
 interface PageContent {
   title?: string;
-  content?: { _type: string; children?: { text?: string }[] }[];
+  content?: { _type: string; style?: string; children?: { _type?: string; text?: string; marks?: string[] }[] }[];
 }
 
 export default async function DesprePage() {
@@ -90,16 +90,48 @@ export default async function DesprePage() {
   );
 }
 
-function SanityContent({ blocks }: { blocks: { _type: string; children?: { text?: string }[] }[] }) {
+function SanityContent({
+  blocks,
+}: {
+  blocks: { _type: string; style?: string; children?: { _type?: string; text?: string; marks?: string[] }[] }[];
+}) {
   return (
-    <>
+    <div className="space-y-4">
       {blocks.map((block, i) => {
-        if (block._type === "block") {
-          const text = block.children?.map((c) => c.text || "").join("") || "";
-          return <p key={i} className="mt-4 first:mt-0">{text}</p>;
+        if (block._type !== "block") return null;
+        const style = block.style || "normal";
+
+        const renderChildren = () =>
+          block.children?.map((child, ci) => {
+            const text = child.text || "";
+            const isBold = child.marks?.includes("strong");
+            if (isBold) {
+              return (
+                <strong key={ci} className="text-gold-dark">
+                  {text}
+                </strong>
+              );
+            }
+            return <span key={ci}>{text}</span>;
+          });
+
+        switch (style) {
+          case "h2":
+            return (
+              <h2 key={i} className="font-serif text-2xl text-gold-dark pt-8">
+                {renderChildren()}
+              </h2>
+            );
+          case "h3":
+            return (
+              <h3 key={i} className="font-serif text-xl text-gold-dark pt-6">
+                {renderChildren()}
+              </h3>
+            );
+          default:
+            return <p key={i}>{renderChildren()}</p>;
         }
-        return null;
       })}
-    </>
+    </div>
   );
 }
