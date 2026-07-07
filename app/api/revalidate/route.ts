@@ -1,4 +1,4 @@
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
@@ -9,7 +9,13 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: "Invalid secret" }, { status: 401 });
   }
 
-  revalidatePath("/", "layout");
+  revalidatePath("/");
+  revalidatePath("/despre");
+  revalidatePath("/pachete");
+  revalidatePath("/jocuri");
+  revalidatePath("/ssi");
+  revalidatePath("/contact");
+  revalidateTag("sanity");
 
   return NextResponse.json({ revalidated: true });
 }
