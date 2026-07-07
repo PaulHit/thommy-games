@@ -21,11 +21,11 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="flex flex-wrap justify-center gap-8">
           {testimonials.map((t) => (
             <div
               key={t._id}
-              className="bg-cream rounded-2xl p-8 border border-text-light/20"
+              className="bg-cream rounded-2xl p-8 border border-text-light/20 w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.3rem)] max-w-md"
             >
               <p className="text-text/80 italic leading-relaxed">
                 &ldquo;{t.quote}&rdquo;
