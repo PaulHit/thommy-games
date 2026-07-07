@@ -9,32 +9,8 @@ interface TestimonialsProps {
   testimonials: Testimonial[];
 }
 
-const fallbackTestimonials = [
-  {
-    _id: "1",
-    quote:
-      "Jocurile au făcut diferența la nunta noastră. Invitații s-au distrat toată seara și încă mai vorbesc despre asta.",
-    name: "Andreea & Mihai",
-    role: "Miri",
-  },
-  {
-    _id: "2",
-    quote:
-      "O alegere excelentă pentru team-building. Echipa a fost încântată, iar jocurile au creat o atmosferă relaxată și competitivă.",
-    name: "Compania TechStar",
-    role: "Eveniment corporate",
-  },
-  {
-    _id: "3",
-    quote:
-      "Foarte profesioniști. Au venit, au instalat totul și la final au strâns fără să deranjeze pe nimeni. Recomand cu toată inima.",
-    name: "Ioana P.",
-    role: "Petrecere privată",
-  },
-];
-
 export default function Testimonials({ testimonials }: TestimonialsProps) {
-  const items = testimonials.length > 0 ? testimonials : fallbackTestimonials;
+  if (!testimonials || testimonials.length === 0) return null;
 
   return (
     <section className="py-20 bg-white">
@@ -46,7 +22,7 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {items.map((t) => (
+          {testimonials.map((t) => (
             <div
               key={t._id}
               className="bg-cream rounded-2xl p-8 border border-text-light/20"
