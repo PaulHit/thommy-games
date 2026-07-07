@@ -1,6 +1,11 @@
 import Link from "next/link";
 
-export default function Hero() {
+interface HeroProps {
+  heroTitle?: string;
+  heroSubtitle?: string;
+}
+
+export default function Hero({ heroTitle, heroSubtitle }: HeroProps) {
   return (
     <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-cream via-cream-light to-gold/10">
       <div className="container-custom py-20 z-10 text-center max-w-4xl mx-auto">
@@ -8,12 +13,11 @@ export default function Hero() {
           Închirieri jocuri pentru evenimente
         </p>
         <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-tight text-text">
-          Thommy Games
+          {heroTitle || "Thommy Games"}
         </h1>
         <p className="mt-8 text-lg md:text-xl max-w-xl mx-auto leading-relaxed text-text-light">
-          Uită de evenimentele plictisitoare. Cu Thommy Games, invitații tăi
-          se joacă, râd, interacționează și își amintesc cu drag de
-          evenimentul tău.
+          {heroSubtitle ||
+            "Uită de evenimentele plictisitoare. Cu Thommy Games, invitații tăi se joacă, râd, interacționează și își amintesc cu drag de evenimentul tău."}
         </p>
         <div className="mt-12 flex gap-4 justify-center flex-col sm:flex-row">
           <Link

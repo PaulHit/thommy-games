@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Header from "./Header";
-import Footer from "./Footer";
+import FooterClient from "./FooterClient";
 import FloatingCTA from "./FloatingCTA";
 
 export default function RootLayoutClient({
@@ -17,7 +17,7 @@ export default function RootLayoutClient({
     <>
       {!isStudio && <Header />}
       {children}
-      {!isStudio && <Footer />}
+      {!isStudio && <FooterClient />}
       <FloatingCTA />
     </>
   );

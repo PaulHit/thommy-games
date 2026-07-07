@@ -1,5 +1,4 @@
 import { sanityClient } from "@/lib/sanity";
-import { getAllGames } from "@/lib/queries";
 import { toPlainText, urlFor } from "@/lib/sanity";
 import ImageSlider from "@/components/ui/ImageSlider";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";

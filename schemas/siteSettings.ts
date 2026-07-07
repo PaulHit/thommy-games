@@ -144,5 +144,91 @@ export default defineType({
         },
       ],
     }),
+    // --- Hero section ---
+    defineField({
+      name: "heroSection",
+      title: "Hero (pagina principală)",
+      type: "object",
+      options: { collapsible: true, collapsed: false },
+      fields: [
+        {
+          name: "heroTitle",
+          title: "Titlu",
+          type: "string",
+          description: "Predefinit: Thommy Games",
+        },
+        {
+          name: "heroSubtitle",
+          title: "Subtitlu",
+          type: "text",
+          description: "Predefinit: Uită de evenimentele plictisitoare...",
+        },
+      ],
+    }),
+    // --- CTA section ---
+    defineField({
+      name: "ctaSection",
+      title: "CTA (pagina principală)",
+      type: "object",
+      options: { collapsible: true, collapsed: false },
+      fields: [
+        { name: "ctaTitle", title: "Titlu", type: "string" },
+        { name: "ctaSubtitle", title: "Subtitlu", type: "text" },
+        { name: "ctaButtonText", title: "Text buton principal", type: "string" },
+        { name: "ctaSecondaryButtonText", title: "Text buton secundar", type: "string" },
+      ],
+    }),
+    // --- Program ---
+    defineField({
+      name: "scheduleSection",
+      title: "Program",
+      type: "object",
+      options: { collapsible: true, collapsed: false },
+      fields: [
+        { name: "monFri", title: "Luni — Vineri", type: "string" },
+        { name: "saturday", title: "Sâmbătă", type: "string" },
+        { name: "sunday", title: "Duminică", type: "string" },
+      ],
+    }),
+    // --- Package includes ---
+    defineField({
+      name: "packageIncludes",
+      title: "„Ce include orice pachet” (pagina pachete)",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            { name: "emoji", title: "Emoji/Iconiță", type: "string" },
+            { name: "title", title: "Titlu", type: "string" },
+            { name: "description", title: "Descriere", type: "text" },
+          ],
+          preview: {
+            select: { title: "title", subtitle: "description" },
+          },
+        },
+      ],
+    }),
+    // --- Footer ---
+    defineField({
+      name: "footerSection",
+      title: "Footer",
+      type: "object",
+      options: { collapsible: true, collapsed: false },
+      fields: [
+        {
+          name: "footerDescription",
+          title: "Descriere",
+          type: "text",
+          description: "Textul din coloana stângă a footer-ului",
+        },
+        {
+          name: "footerCopyright",
+          title: "Copyright",
+          type: "string",
+          description: "Textul de jos (ex: © 2025 Thommy Games. Toate drepturile rezervate.)",
+        },
+      ],
+    }),
   ],
 });

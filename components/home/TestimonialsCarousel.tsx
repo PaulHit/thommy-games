@@ -1,17 +1,31 @@
-const testimonials = [
+interface Testimonial {
+  _id: string;
+  name: string;
+  role?: string;
+  quote: string;
+}
+
+interface TestimonialsProps {
+  testimonials: Testimonial[];
+}
+
+const fallbackTestimonials = [
   {
+    _id: "1",
     quote:
       "Jocurile au făcut diferența la nunta noastră. Invitații s-au distrat toată seara și încă mai vorbesc despre asta.",
     name: "Andreea & Mihai",
     role: "Miri",
   },
   {
+    _id: "2",
     quote:
       "O alegere excelentă pentru team-building. Echipa a fost încântată, iar jocurile au creat o atmosferă relaxată și competitivă.",
     name: "Compania TechStar",
     role: "Eveniment corporate",
   },
   {
+    _id: "3",
     quote:
       "Foarte profesioniști. Au venit, au instalat totul și la final au strâns fără să deranjeze pe nimeni. Recomand cu toată inima.",
     name: "Ioana P.",
@@ -19,7 +33,9 @@ const testimonials = [
   },
 ];
 
-export default function Testimonials() {
+export default function Testimonials({ testimonials }: TestimonialsProps) {
+  const items = testimonials.length > 0 ? testimonials : fallbackTestimonials;
+
   return (
     <section className="py-20 bg-white">
       <div className="container-custom">
@@ -30,9 +46,9 @@ export default function Testimonials() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((t) => (
+          {items.map((t) => (
             <div
-              key={t.name}
+              key={t._id}
               className="bg-cream rounded-2xl p-8 border border-text-light/20"
             >
               <p className="text-text/80 italic leading-relaxed">
@@ -42,7 +58,9 @@ export default function Testimonials() {
                 <p className="font-serif font-semibold text-gold-dark">
                   {t.name}
                 </p>
-                <p className="text-sm text-text-light">{t.role}</p>
+                {t.role && (
+                  <p className="text-sm text-text-light">{t.role}</p>
+                )}
               </div>
             </div>
           ))}

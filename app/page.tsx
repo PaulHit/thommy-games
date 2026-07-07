@@ -34,10 +34,11 @@ interface HomeVideo {
   videoUrl?: string;
 }
 
-interface InstagramPost {
-  _key: string;
-  images: SanityImageSource[];
-  url?: string;
+interface TestimonialData {
+  _id: string;
+  name: string;
+  role?: string;
+  quote: string;
 }
 
 interface HomePageData {
@@ -45,9 +46,16 @@ interface HomePageData {
   gamesWithPhotos: { photos: SanityImageSource[] }[];
   benefits: BenefitData[];
   videos: HomeVideo[];
+  testimonials: TestimonialData[];
   instagramUsername: string | null;
   instagramUrl: string | null;
-  instagramPosts: InstagramPost[] | null;
+  instagramPosts: { _key: string; images: SanityImageSource[]; url?: string }[] | null;
+  heroTitle: string | null;
+  heroSubtitle: string | null;
+  ctaTitle: string | null;
+  ctaSubtitle: string | null;
+  ctaButtonText: string | null;
+  ctaSecondaryButtonText: string | null;
 }
 
 export default async function Home() {
@@ -57,9 +65,16 @@ export default async function Home() {
       "gamesWithPhotos": *[_type == "game" && defined(photos) && count(photos) > 0]{ photos[0] },
       "benefits": *[_type == "homeBenefit"] | order(order asc) { title, description, image },
       "videos": *[_type == "homeVideo"] | order(order asc) { label, "videoUrl": videoFile.asset->url },
+      "testimonials": *[_type == "testimonial"] | order(_createdAt asc) { _id, name, role, quote },
       "instagramUsername": *[_type == "siteSettings"][0].instagramUsername,
       "instagramUrl": *[_type == "siteSettings"][0].instagramUrl,
-      "instagramPosts": *[_type == "siteSettings"][0].instagramPosts[] { _key, images, url }
+      "instagramPosts": *[_type == "siteSettings"][0].instagramPosts[] { _key, images, url },
+      "heroTitle": *[_type == "siteSettings"][0].heroSection.heroTitle,
+      "heroSubtitle": *[_type == "siteSettings"][0].heroSection.heroSubtitle,
+      "ctaTitle": *[_type == "siteSettings"][0].ctaSection.ctaTitle,
+      "ctaSubtitle": *[_type == "siteSettings"][0].ctaSection.ctaSubtitle,
+      "ctaButtonText": *[_type == "siteSettings"][0].ctaSection.ctaButtonText,
+      "ctaSecondaryButtonText": *[_type == "siteSettings"][0].ctaSection.ctaSecondaryButtonText
     }`
   );
 
@@ -69,7 +84,7 @@ export default async function Home() {
 
   return (
     <main>
-      <Hero />
+      <Hero heroTitle={data.heroTitle ?? undefined} heroSubtitle={data.heroSubtitle ?? undefined} />
       {(data.instagramPosts && data.instagramPosts.length > 0) && (
         <InstagramFeed
           username={data.instagramUsername ?? undefined}
@@ -85,9 +100,14 @@ export default async function Home() {
       {(data.videos[2] || data.videos[3]) && (
         <VideoShowcase videos={data.videos.slice(2, 4)} />
       )}
-      <Testimonials />
+      <Testimonials testimonials={data.testimonials} />
       <FeaturedPackages packages={data.packages} />
-      <CTA />
+      <CTA
+        ctaTitle={data.ctaTitle ?? undefined}
+        ctaSubtitle={data.ctaSubtitle ?? undefined}
+        ctaButtonText={data.ctaButtonText ?? undefined}
+        ctaSecondaryButtonText={data.ctaSecondaryButtonText ?? undefined}
+      />
     </main>
   );
 }

@@ -6,6 +6,7 @@ import { z } from "zod";
 import { useState } from "react";
 import Input from "@/components/ui/Input";
 import Textarea from "@/components/ui/Textarea";
+import ContactInfo from "@/components/ui/ContactInfo";
 import SocialLinks from "@/components/ui/SocialLinks";
 
 const contactSchema = z.object({
@@ -55,9 +56,7 @@ export default function ContactPage() {
     <main className="pt-8 pb-20">
       <div className="container-custom">
         <div className="text-center mb-14">
-          <h1 className="font-serif text-4xl md:text-5xl text-gold-dark">
-            Contact
-          </h1>
+          <h1 className="font-serif text-4xl md:text-5xl text-gold-dark">Contact</h1>
           <p className="mt-4 text-text-light max-w-xl mx-auto">
             Ai o întrebare sau vrei să verifici disponibilitatea? Scrie-ne și
             îți răspundem în maxim 24 de ore.
@@ -67,48 +66,9 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
           {/* Contact info */}
           <div className="space-y-8">
+            <ContactInfo />
             <div className="bg-cream rounded-2xl p-8 border border-text-light/20">
-              <h2 className="font-serif text-xl text-gold-dark mb-4">
-                Informații de contact
-              </h2>
-              <div className="space-y-4 text-text/80">
-                <div>
-                  <p className="text-sm font-medium text-gold-dark">Email</p>
-                  <a
-                    href="mailto:contact@thommygames.ro"
-                    className="hover:text-gold transition-colors"
-                  >
-                    contact@thommygames.ro
-                  </a>
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-gold-dark">Locație</p>
-                  <p>Beclean, Bistrița-Năsăud</p>
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-gold-dark">
-                    Transport gratuit
-                  </p>
-                  <p>În limita a 70 km de Beclean, Bistrița-Năsăud</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-cream rounded-2xl p-8 border border-text-light/20">
-              <h2 className="font-serif text-xl text-gold-dark mb-4">
-                Program
-              </h2>
-              <div className="space-y-2 text-sm text-text/80">
-                <p>Luni — Vineri: 09:00 — 18:00</p>
-                <p>Sâmbătă: 10:00 — 16:00</p>
-                <p>Duminică: Închis (evenimente programate)</p>
-              </div>
-            </div>
-
-            <div className="bg-cream rounded-2xl p-8 border border-text-light/20">
-              <h2 className="font-serif text-xl text-gold-dark mb-4">
-                Social media
-              </h2>
+              <h2 className="font-serif text-xl text-gold-dark mb-4">Social media</h2>
               <SocialLinks />
             </div>
           </div>
@@ -118,54 +78,27 @@ export default function ContactPage() {
             {status === "success" ? (
               <div className="text-center py-8">
                 <p className="text-3xl mb-4">✅</p>
-                <h3 className="font-serif text-xl text-green-800 mb-2">
-                  Mesaj trimis!
-                </h3>
-                <p className="text-green-700 text-sm">
-                  Îți vom răspunde în maxim 24 de ore.
-                </p>
+                <h3 className="font-serif text-xl text-green-800 mb-2">Mesaj trimis!</h3>
+                <p className="text-green-700 text-sm">Îți vom răspunde în maxim 24 de ore.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-                <h3 className="font-serif text-xl text-gold-dark mb-2">
-                  Trimite-ne un mesaj
-                </h3>
-
-                <Input
-                  label="Nume *"
-                  {...register("name")}
-                  error={errors.name?.message}
-                />
-                <Input
-                  label="Email *"
-                  type="email"
-                  {...register("email")}
-                  error={errors.email?.message}
-                />
-                <Input
-                  label="Telefon"
-                  type="tel"
-                  {...register("phone")}
-                  error={errors.phone?.message}
-                />
+                <h3 className="font-serif text-xl text-gold-dark mb-2">Trimite-ne un mesaj</h3>
+                <Input label="Nume *" {...register("name")} error={errors.name?.message} />
+                <Input label="Email *" type="email" {...register("email")} error={errors.email?.message} />
+                <Input label="Telefon" type="tel" {...register("phone")} error={errors.phone?.message} />
                 <Textarea
                   label="Mesaj *"
                   placeholder="Spune-ne despre evenimentul tău..."
                   {...register("message")}
                   error={errors.message?.message}
                 />
-
-                {status === "error" && (
-                  <p className="text-red-500 text-sm">
-                    A apărut o eroare. Încearcă din nou.
-                  </p>
-                )}
-
-<button
-            type="submit"
-            disabled={status === "sending"}
-            className="w-full bg-gold text-white py-3 rounded-full font-medium hover:bg-gold-dark hover:scale-105 transition-all disabled:opacity-50 cursor-pointer"
-          >
+                {status === "error" && <p className="text-red-500 text-sm">A apărut o eroare. Încearcă din nou.</p>}
+                <button
+                  type="submit"
+                  disabled={status === "sending"}
+                  className="w-full bg-gold text-white py-3 rounded-full font-medium hover:bg-gold-dark hover:scale-105 transition-all disabled:opacity-50 cursor-pointer"
+                >
                   {status === "sending" ? "Se trimite..." : "Trimite mesajul"}
                 </button>
               </form>
