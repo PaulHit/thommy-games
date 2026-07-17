@@ -76,7 +76,7 @@ export default async function PachetePage() {
                   </div>
                 )}
                 <h2 className="font-serif text-2xl font-bold text-gold-dark">{pkg.name}</h2>
-                <p className="text-4xl font-bold text-gold mt-4">€{pkg.price}</p>
+                <p className="text-4xl font-bold text-gold mt-4">{pkg.price} RON</p>
                 <p className="text-text-light mt-2">{pkg.totalGames} jocuri</p>
                 <p className="text-sm text-text/60 mt-1">{pkg.level1Count} jocuri Nivel 1 + {pkg.level2Count} jocuri Nivel 2</p>
                 {pkg.includesAssistant && (

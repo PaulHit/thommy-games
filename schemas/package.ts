@@ -26,7 +26,7 @@ export default defineType({
     }),
     defineField({
       name: "price",
-      title: "Preț (EUR)",
+      title: "Preț (RON)",
       type: "number",
       validation: (rule) => rule.required(),
     }),

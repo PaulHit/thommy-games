@@ -106,7 +106,7 @@ export default async function PackagePage({
                 </span>
               )}
             </h1>
-            <p className="text-4xl font-bold text-gold mt-6">€{pkg.price}</p>
+            <p className="text-4xl font-bold text-gold mt-6">{pkg.price} RON</p>
 
             <div className="flex flex-wrap gap-4 mt-4">
               <span className="bg-cream text-gold-dark text-sm px-4 py-1.5 rounded-full font-medium">

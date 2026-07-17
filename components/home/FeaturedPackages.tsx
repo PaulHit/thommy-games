@@ -53,7 +53,7 @@ export default function FeaturedPackages({ packages }: FeaturedPackagesProps) {
                   {pkg.name}
                 </h3>
                 <p className="mt-3 text-3xl font-bold text-gold">
-                  €{pkg.price}
+                  {pkg.price} RON
                 </p>
                 <p className="mt-2 text-sm text-text-light">
                   {pkg.totalGames} jocuri
