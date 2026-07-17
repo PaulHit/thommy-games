@@ -22,7 +22,14 @@
   }
 }
 
+/* Only ever visible in the iOS overscroll area beyond <body>, where it matches
+   the cream footer instead of showing a white gap. body paints the real page. */
+html {
+  background-color: var(--color-cream);
+}
+
 body {
+  background-color: #fff;
   font-family: var(--font-sans);
   color: var(--color-text);
 }

@@ -5,14 +5,16 @@ import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import RootLayoutClient from "@/components/layout/RootLayoutClient";
 
+// latin-ext carries the Romanian diacritics (ă, ș, ț) — without it they are
+// fetched late and render in a fallback font mid-word.
 const playfair = Playfair_Display({
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   variable: "--font-serif",
   display: "swap",
 });
 
 const inter = Inter({
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   variable: "--font-sans",
   display: "swap",
 });
