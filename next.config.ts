@@ -9,6 +9,16 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      // /ssi was the old FAQ URL — keep bookmarks and search results working.
+      {
+        source: "/ssi",
+        destination: "/intrebari-frecvente",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

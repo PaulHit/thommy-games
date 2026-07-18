@@ -64,7 +64,7 @@ CMS at `/studio` — requires authentication via Sanity. All schema types are in
 │   ├── despre/        # about page (Portable Text from Sanity)
 │   ├── jocuri/        # all-games grid with image slider cards
 │   ├── pachete/       # package listing + [slug] detail with booking form
-│   ├── ssi/           # FAQ from Sanity
+│   ├── intrebari-frecvente/  # FAQ from Sanity
 │   └── studio/        # Sanity Studio route
 ├── components/
 │   ├── home/          # Hero, CTA, Benefits, FeaturedPackages, Gallery, Video, Instagram
