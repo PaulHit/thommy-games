@@ -10,7 +10,7 @@ const links = [
   { href: "/pachete", label: "Pachete" },
   { href: "/jocuri", label: "Jocuri" },
   { href: "/despre", label: "Despre" },
-  { href: "/ssi", label: "Întrebări frecvente" },
+  { href: "/intrebari-frecvente", label: "Întrebări frecvente" },
   { href: "/contact", label: "Contact" },
 ];
 

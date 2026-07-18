@@ -13,7 +13,7 @@ export async function GET(request: Request) {
   revalidatePath("/despre");
   revalidatePath("/pachete");
   revalidatePath("/jocuri");
-  revalidatePath("/ssi");
+  revalidatePath("/intrebari-frecvente");
   revalidatePath("/contact");
   revalidateTag("sanity");
 

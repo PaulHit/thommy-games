@@ -47,7 +47,7 @@ export default function FooterClient() {
               <Link href="/pachete" className="text-text hover:text-gold hover:scale-110 transition-all inline-block">Pachete</Link>
               <Link href="/jocuri" className="text-text hover:text-gold hover:scale-110 transition-all inline-block">Jocuri</Link>
               <Link href="/despre" className="text-text hover:text-gold hover:scale-110 transition-all inline-block">Despre noi</Link>
-              <Link href="/ssi" className="text-text hover:text-gold hover:scale-110 transition-all inline-block">Întrebări frecvente</Link>
+              <Link href="/intrebari-frecvente" className="text-text hover:text-gold hover:scale-110 transition-all inline-block">Întrebări frecvente</Link>
               <Link href="/contact" className="text-text hover:text-gold hover:scale-110 transition-all inline-block">Contact</Link>
             </div>
           </div>
